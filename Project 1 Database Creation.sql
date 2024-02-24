@@ -25,15 +25,22 @@ CREATE TABLE providers (
     room_number VARCHAR(255) NOT NULL
 );
 
+-- Create facilities table
+CREATE TABLE facilities (
+	facility_id INT AUTO_INCREMENT PRIMARY KEY,
+    facility_name VARCHAR(255) NOT NULL,
+    address text NOT NULL
+    );
+    
 -- Create appointments table
 CREATE TABLE appointments (
     appointment_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NOT NULL,
-    doctor_id INT NOT NULL,
-    facility INT NOT NULL,
-    visit_id INT,
+    provider_id INT NOT NULL,
+    facility_id INT NOT NULL,
     appointment_date DATE NOT NULL,
     appointment_time TIME NOT NULL,
+    foreign key (facility_id) references facilities(facility_id),
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
     FOREIGN KEY (provider_id) REFERENCES providers(provider_id)
 );
@@ -43,10 +50,12 @@ CREATE TABLE medical_records (
     record_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NOT NULL,
     visit_date DATE NOT NULL,
+    facility_id INT NOT NULL,
     discharge_date DATE NOT NULL, 
     symptoms TEXT,
-    diagnosis VARCHAR(255) NOT NULL,
-    treatment_plan TEXT NOT NULL,
+    diagnosis VARCHAR(255),
+    treatment_plan TEXT,
+    foreign key (facility_id) references facilities(facility_id),
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
 );
 
