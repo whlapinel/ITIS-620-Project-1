@@ -1,95 +1,102 @@
--- Create Patients table
-CREATE TABLE Patients (
-    PatientID INT PRIMARY KEY,
-    FullName VARCHAR(255),
-    DateOfBirth DATE,
-    Gender VARCHAR(10),
-    ContactNumber VARCHAR(20)
+-- Create the project_1 database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS project_1;
+
+-- Switch to the project_1 database
+USE project_1;
+
+-- Create patients table
+CREATE TABLE patients (
+    patient_id INT auto_increment primary KEY,
+    full_name text not null,
+    date_of_birth DATE not null,
+    address text not null,
+    gender VARCHAR(10),
+    contact_number VARCHAR(20)
 );
 
--- Create Appointments table
-CREATE TABLE Appointments (
-    AppointmentID INT PRIMARY KEY,
-    PatientID INT,
-    DoctorID INT,
-    AppointmentDate DATE,
-    AppointmentTime TIME,
-    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
-    FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
+-- Create doctors table
+CREATE TABLE doctors (
+    doctor_id INT auto_increment primary KEY,
+    full_name text not null,
+    specialty VARCHAR(100),
+    contact_number VARCHAR(20),
+    room_number VARCHAR(20)
 );
 
--- Create Doctors table
-CREATE TABLE Doctors (
-    DoctorID INT PRIMARY KEY,
-    FullName VARCHAR(255),
-    Specialty VARCHAR(100),
-    ContactNumber VARCHAR(20),
-    RoomNumber VARCHAR(20)
+-- Create appointments table
+CREATE TABLE appointments (
+    appointment_id INT auto_increment primary KEY,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATE,
+    appointment_time TIME,
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id)
 );
 
--- Create MedicalRecords table
-CREATE TABLE MedicalRecords (
-    RecordID INT PRIMARY KEY,
-    PatientID INT,
-    VisitDate DATE,
-    Diagnosis VARCHAR(255),
-    TreatmentPlan VARCHAR(255),
-    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+-- Create medical_records table
+CREATE TABLE medical_records (
+    record_id INT auto_increment PRIMARY KEY,
+    patient_id INT,
+    visit_date DATE,
+    diagnosis VARCHAR(255),
+    treatment_plan VARCHAR(255),
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
 );
 
--- Create Prescriptions table
-CREATE TABLE Prescriptions (
-    PrescriptionID INT PRIMARY KEY,
-    RecordID INT,
-    Medication VARCHAR(255),
-    Dosage VARCHAR(50),
-    Instructions TEXT,
-    FOREIGN KEY (RecordID) REFERENCES MedicalRecords(RecordID)
+-- Create prescriptions table
+CREATE TABLE prescriptions (
+    prescription_id INT auto_increment PRIMARY KEY,
+    record_id INT,
+    medication VARCHAR(255),
+    dosage VARCHAR(50),
+    instructions TEXT,
+    FOREIGN KEY (record_id) REFERENCES medical_records(record_id)
 );
 
--- Create VisionTests table
-CREATE TABLE VisionTests (
-    TestID INT PRIMARY KEY,
-    RecordID INT,
-    TestType VARCHAR(100),
-    TestDate DATE,
-    Result VARCHAR(100),
-    FOREIGN KEY (RecordID) REFERENCES MedicalRecords(RecordID)
+-- Create vision_tests table
+CREATE TABLE vision_tests (
+    test_id INT auto_increment PRIMARY KEY,
+    record_id INT,
+    test_type VARCHAR(100),
+    test_date DATE,
+    result VARCHAR(100),
+    FOREIGN KEY (record_id) REFERENCES medical_records(record_id)
 );
 
--- Create Invoices table
-CREATE TABLE Invoices (
-    InvoiceID INT PRIMARY KEY,
-    AppointmentID INT,
-    TotalAmount DECIMAL(10,2),
-    DateIssued DATE,
-    PaymentStatus VARCHAR(20),
-    FOREIGN KEY (AppointmentID) REFERENCES Appointments(AppointmentID)
+-- Create invoices table
+CREATE TABLE invoices (
+    invoice_id INT auto_increment PRIMARY KEY,
+    appointment_id INT,
+    total_amount DECIMAL(10,2),
+    date_issued DATE,
+    payment_status VARCHAR(20),
+    FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id)
 );
 
--- Create Equipment table
-CREATE TABLE Equipment (
-    EquipmentID INT PRIMARY KEY,
-    EquipmentName VARCHAR(255),
-    PurchaseDate DATE,
-    RoomNumber VARCHAR(20),
-    Status VARCHAR(20)
+-- Create equipment table
+CREATE TABLE equipment (
+    equipment_id INT auto_increment PRIMARY KEY,
+    equipment_name VARCHAR(255),
+    purchase_date DATE,
+    room_number VARCHAR(20),
+    status VARCHAR(20)
 );
 
--- Create Inventory table
-CREATE TABLE Inventory (
-    InventoryID INT PRIMARY KEY,
-    ItemName VARCHAR(255),
-    Quantity INT,
-    ReorderLevel INT,
-    LastOrderedDate DATE
+-- Create inventory table
+CREATE TABLE inventory (
+    inventory_id INT auto_increment PRIMARY KEY,
+    item_name VARCHAR(255),
+    quantity INT,
+    reorder_level INT,
+    last_ordered_date DATE
 );
 
--- Create Staff table
-CREATE TABLE Staff (
-    StaffID INT PRIMARY KEY,
-    FullName VARCHAR(255),
-    Role VARCHAR(50),
-    ContactNumber VARCHAR(20),
-    Schedule VARCHAR(255)
+-- Create staff table
+CREATE TABLE staff (
+    staff_id INT auto_increment PRIMARY KEY,
+    full_name VARCHAR(255),
+    role VARCHAR(50),
+    contact_number VARCHAR(20),
+    schedule VARCHAR(255)
 );
