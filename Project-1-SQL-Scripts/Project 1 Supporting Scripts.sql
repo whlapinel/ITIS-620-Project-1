@@ -33,10 +33,18 @@ INSERT INTO medical_records (patient_id, visit_date, facility_id, discharge_date
 INSERT INTO prescriptions (record_id, prescription_id, prescription_date, medication, dosage, frequency, duration, instructions)
 VALUES (1, 1, '2024-03-02', 'Tylenol', '500mg', 'Once a day', '7 days', 'Take with food')
 
--- SUPPORTING QUERY 7: Record an invoice
+-- SUPPORTING QUERY 7: Record results of a vision test
+INSERT INTO exams (record_id, test_type, test_date, test_results)
+VALUES (1, 'Visual Acuity', '2024-03-02', '20/20')
 
+-- SUPPORTING QUERY 8: Record an invoice
 INSERT INTO invoices (visit_id, total_amount, customer_portion, paid_by_customer, insurance_portion, paid_by_insurance, date_issued)
 VALUES (1, 100.00, 50.00, 50.00, 50.00, 50.00, '2024-03-02')
+
+-- SUPPORTING QUERY 9: Update quantity of inventory item
+UPDATE inventory
+SET quantity = 10
+WHERE item_id = 1;
 
 -- SPEC F: Your database should support editing of existing records to correct data entry mistakes or legitimate changes of information (e.g. change of address or insurance).
 
@@ -61,7 +69,8 @@ WHERE patient_id = 2;
 SELECT * 
 FROM patients 
 JOIN medical_records ON patients.patient_id = medical_records.patient_id
-WHERE medical_records.visit_date = '2024-03-02';
+JOIN visits ON medical_records.visit_id = visits.visit_id
+WHERE visits.visit_date = '2024-03-02';
 
 -- SPEC H: Your database should support reporting functions such as listing of all patients who satisfy certain  selection  criteria,  such  as  those  who  have  been  given  certain  diagnosis,  or  who visited on certain days, or who have been seen by certain doctor, or combinations of these such  as,  the  diagnoses  of  patients  who  visited  the  clinic  twice  within  the  shortest  time interval.
 

@@ -50,7 +50,7 @@ CREATE TABLE appointments (
 CREATE TABLE medical_records (
     record_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NOT NULL,
-    visit_date DATE NOT NULL,
+    visit_id DATE NOT NULL,
     facility_id INT NOT NULL,
     discharge_date DATE NOT NULL, 
     symptoms TEXT,
@@ -118,4 +118,17 @@ CREATE TABLE staff (
     role VARCHAR(255) NOT NULL,
     contact_number VARCHAR(255) NOT NULL,
     schedule VARCHAR(255) NOT NULL
+);
+
+-- Create visits table
+CREATE TABLE visits (
+    visit_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    provider_id INT NOT NULL,
+    facility_id INT NOT NULL,
+    visit_date DATE NOT NULL,
+    visit_time TIME NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
+    FOREIGN KEY (provider_id) REFERENCES providers(provider_id),
+    FOREIGN KEY (facility_id) REFERENCES facilities(facility_id)
 );
