@@ -92,3 +92,10 @@ INSERT INTO staff (full_name, role, contact_number, schedule) VALUES
 ('Hank Scorpio', 'General Manager', '555-0304', 'Mon-Fri, 9am-5pm'),
 ('Lisa Simpson', 'Pharmacist', '555-0305', 'Mon-Fri, 8am-5pm');
 
+INSERT INTO visits (patient_id, provider_id, facility_id, visit_date, visit_time) VALUES
+(1, 1, 1, '2024-03-25', '09:00:00'),
+(2, 2, 2, '2024-03-26', '10:30:00'),
+(3, 3, 3, '2024-03-27', '11:15:00'),
+(4, 4, 4, '2024-03-28', '14:45:00'),
+(5, 5, 5, '2024-03-29', '16:30:00');
+
