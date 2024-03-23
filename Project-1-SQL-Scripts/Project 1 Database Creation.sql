@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS project_1;
 
 -- Create the project_1 database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS project_1;
