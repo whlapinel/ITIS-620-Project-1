@@ -1,7 +1,9 @@
 USE project_1;
 
+
 -- Insert data into patients table
 INSERT INTO patients (full_name, date_of_birth, address, gender, insurance_provider, contact_number) VALUES
+('Jason Eyehurts', '1985-04-12', '123 Vision Lane', 'Male', 'VisionCare', '555-0123'),
 ('John Doe', '1980-04-01', '123 Elm St, Springfield', 'Male', 'HealthPlus Insurances', '555-0101'),
 ('Jane Smith', '1992-08-12', '456 Maple Ave, Hill Valley', 'Female', 'Wellcare', '555-0102'),
 ('Alex Johnson', '1976-11-23', '789 Oak St, Twin Peaks', 'Other', 'Prime Health Covers', '555-0103'),
@@ -10,6 +12,7 @@ INSERT INTO patients (full_name, date_of_birth, address, gender, insurance_provi
 
 -- Insert data into providers table
 INSERT INTO providers (full_name, specialty, contact_number, room_number) VALUES
+('Dr. Iris Clearview', 'Ophthalmologist', '555-0456', '202'),
 ('Dr. Emily Stanton', 'Cardiology', '555-0201', '101'),
 ('Dr. Mark Well', 'General Medicine', '555-0202', '102'),
 ('Dr. Anna Lee', 'Pediatrics', '555-0203', '103'),
@@ -18,6 +21,7 @@ INSERT INTO providers (full_name, specialty, contact_number, room_number) VALUES
 
 -- Insert data into facilities table
 INSERT INTO facilities (facility_name, address) VALUES
+('Clear Sight Eye Center', '456 Eyelid Ave'),
 ('Springfield General Hospital', '101 Health Way, Springfield'),
 ('Hill Valley Medical Center', '201 Time Traveler Rd, Hill Valley'),
 ('Twin Peaks Clinic', '301 Cherry Pie Blvd, Twin Peaks'),
@@ -27,6 +31,7 @@ INSERT INTO facilities (facility_name, address) VALUES
 -- Insert data into appointments table
 -- Note: Assumes existing patient_id, provider_id, and facility_id. Replace with actual IDs.
 INSERT INTO appointments (patient_id, provider_id, facility_id, appointment_date, appointment_time) VALUES
+(1, 1, 1, '2024-03-30', '09:00:00'),
 (1, 1, 1, '2024-03-01', '09:00:00'),
 (2, 2, 2, '2024-03-02', '10:00:00'),
 (3, 3, 3, '2024-03-03', '11:00:00'),
@@ -35,12 +40,13 @@ INSERT INTO appointments (patient_id, provider_id, facility_id, appointment_date
 
 -- Insert data into medical_records table
 -- Note: Assumes existing patient_id and facility_id. Replace with actual IDs.
-INSERT INTO medical_records (patient_id, visit_id, facility_id, discharge_date, symptoms, diagnosis, treatment_plan) VALUES
-(1, 1, 1, '2024-03-02', 'Cough and fever', 'Common Cold', 'Rest and hydration'),
-(2, 2, 2, '2024-03-03', 'Headache and nausea', 'Migraine', 'Prescription medication and rest'),
-(3, 3, 3, '2024-03-04', 'Blurry vision', 'Myopia', 'Prescription glasses'),
-(4, 4, 4, '2024-03-05', 'Shortness of breath', 'Asthma', 'Inhaler and avoid allergens'),
-(5, 5, 5, '2024-03-06', 'Joint pain', 'Arthritis', 'Physical therapy and medication');
+INSERT INTO medical_records (patient_id, provider_id, visit_id, facility_id, discharge_date, symptoms, diagnosis, treatment_plan) VALUES
+(1, 1, 1, 1, '2024-03-30', 'Blurry vision', 'Myopia', 'Prescription glasses'),
+(1, 2, 1, 1, '2024-03-02', 'Cough and fever', 'Common Cold', 'Rest and hydration'),
+(2, 3, 2, 2, '2024-03-03', 'Headache and nausea', 'Migraine', 'Prescription medication and rest'),
+(3, 4, 3, 3, '2024-03-04', 'Blurry vision', 'Myopia', 'Prescription glasses'),
+(4, 4, 4, 4, '2024-03-05', 'Shortness of breath', 'Asthma', 'Inhaler and avoid allergens'),
+(5, 5, 5, 5, '2024-03-06', 'Joint pain', 'Arthritis', 'Physical therapy and medication');
 
 -- Insert data into prescriptions table
 -- Note: Assumes existing record_id. Replace with actual IDs.
@@ -53,6 +59,7 @@ INSERT INTO prescriptions (record_id, medication, dosage, instructions) VALUES
 
 -- Insert data into vision_tests table
 INSERT INTO vision_tests (record_id, test_type, test_date, result) VALUES
+(1, 'Standard Eye Exam', '2024-03-30', '20/40 vision detected'),
 (1, 'Standard Visual Acuity', '2024-03-02', '20/20'),
 (2, 'Color Vision Test', '2024-03-03', 'Normal'),
 (3, 'Glaucoma Test', '2024-03-04', 'Normal Pressure'),
@@ -84,7 +91,9 @@ INSERT INTO staff (full_name, role, contact_number, schedule) VALUES
 ('Hank Scorpio', 'General Manager', '555-0304', 'Mon-Fri, 9am-5pm'),
 ('Lisa Simpson', 'Pharmacist', '555-0305', 'Mon-Fri, 8am-5pm');
 
+-- Insert data into visits table
 INSERT INTO visits (patient_id, provider_id, facility_id, visit_date, visit_time) VALUES
+(1, 1, 1, '2024-03-30', '09:00:00'),
 (1, 1, 1, '2024-03-25', '09:00:00'),
 (2, 2, 2, '2024-03-26', '10:30:00'),
 (3, 3, 3, '2024-03-27', '11:15:00'),
@@ -98,3 +107,5 @@ INSERT INTO invoices (visit_id, total_amount, customer_portion, paid_by_customer
 (3, 100.00, 10.00, 10.00, 90.00, 90.00, '2024-03-04'),
 (4, 250.00, 50.00, 50.00, 200.00, 200.00, '2024-03-05'),
 (5, 300.00, 60.00, 60.00, 240.00, 240.00, '2024-03-06');
+
+

@@ -50,7 +50,8 @@ CREATE TABLE appointments (
 CREATE TABLE medical_records (
     record_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NOT NULL,
-    visit_id DATE NOT NULL,
+    provider_id INT NOT NULL,
+    visit_id INT NOT NULL,
     facility_id INT NOT NULL,
     discharge_date DATE NOT NULL, 
     symptoms TEXT,
