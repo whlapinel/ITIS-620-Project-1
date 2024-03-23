@@ -29,7 +29,21 @@ INSERT INTO medical_records (patient_id, visit_date, facility_id, discharge_date
 
 -- SPEC E: Other pertinent information depending on scenarios, for example, clinics will need to manage  appointments  and  exam  rooms,  emergency  department  will  need  to  manage information about beds. All clinics will also need to manage supplies and billing
 
+-- SUPPORTING QUERY 6: Record a prescription
+INSERT INTO prescriptions (record_id, prescription_id, prescription_date, medication, dosage, frequency, duration, instructions)
+VALUES (1, 1, '2024-03-02', 'Tylenol', '500mg', 'Once a day', '7 days', 'Take with food')
+
+-- SUPPORTING QUERY 7: Record an invoice
+
+INSERT INTO invoices (visit_id, total_amount, customer_portion, paid_by_customer, insurance_portion, paid_by_insurance, date_issued)
+VALUES (1, 100.00, 50.00, 50.00, 50.00, 50.00, '2024-03-02')
+
 -- SPEC F: Your database should support editing of existing records to correct data entry mistakes or legitimate changes of information (e.g. change of address or insurance).
+
+-- SUPPORTING QUERY 8: Update patient demographic information
+UPDATE patients 
+SET address = '456 Elm St, Springfield' 
+WHERE patient_id = 2;
 
 -- SPEC G: searching of patient records based on name, ID, and possibly other information such as visit dates.
 

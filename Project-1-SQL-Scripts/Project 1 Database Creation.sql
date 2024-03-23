@@ -83,14 +83,14 @@ CREATE TABLE vision_tests (
 -- Create invoices table
 CREATE TABLE invoices (
     invoice_id INT AUTO_INCREMENT PRIMARY KEY,
-    appointment_id INT NOT NULL,
+    visit_id INT NOT NULL,
     total_amount DECIMAL(10,2) NOT NULL,
     customer_portion DECIMAL(10,2),
     paid_by_customer DECIMAL(10,2),
     insurance_portion DECIMAL(10,2),
     paid_by_insurance DECIMAL(10,2),
     date_issued DATE NOT NULL,
-    FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id)
+    FOREIGN KEY (visit_id) REFERENCES medical_records(visit_id)
 );
 
 -- Create equipment table
