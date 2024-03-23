@@ -7,21 +7,23 @@
 
 -- SUPPORTING QUERY 1: Insert patient demographic information
 INSERT INTO patients (full_name, date_of_birth, address, gender, insurance_provider, contact_number)
-VALUES ('Alice Johnson', '1990-05-15', '123 Main St, Springfield')
+VALUES ('Alice Johnson', '1990-05-15', '123 Main St, Springfield');
 
 -- SPEC B: Provider information (including specialty)
 
 -- SUPPORTING QUERY 2: Insert provider information
 INSERT INTO providers (full_name, specialty, contact_number, room_number)
-VALUES ('Dr. Sarah Lee', 'Oncology', '555-0301', '201')
+VALUES ('Dr. Sarah Lee', 'Oncology', '555-0301', '201');
 
 -- SPEC C: Visit information (including time and facility)
 
 -- SUPPORTING QUERY 3: Record an appointment
 INSERT INTO appointments (patient_id, provider_id, facility_id, appointment_date, appointment_time)
+VALUES (1, 1, 1, '2024-03-01', '09:00:00');
 
 -- SUPPORTING QUERY 4: Record a visit (regardless of whether patient had an appointment)
 INSERT INTO medical_records (patient_id, visit_date, facility_id, discharge_date, symptoms, diagnosis, treatment_plan)
+VALUES (1, '2024-03-01', 1, '2024-03-02', 'Cough and fever', 'Common Cold', 'Rest');
 
 -- SPEC D: Clinical  care  information  (including  recording  of  signs  and  symptoms,  discharge diagnosis and prescriptions, and orders and results of exams, tests, and procedures)
 

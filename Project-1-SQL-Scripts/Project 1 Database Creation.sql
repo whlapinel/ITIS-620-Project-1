@@ -80,18 +80,6 @@ CREATE TABLE vision_tests (
     FOREIGN KEY (record_id) REFERENCES medical_records(record_id)
 );
 
--- Create invoices table
-CREATE TABLE invoices (
-    invoice_id INT AUTO_INCREMENT PRIMARY KEY,
-    visit_id INT NOT NULL,
-    total_amount DECIMAL(10,2) NOT NULL,
-    customer_portion DECIMAL(10,2),
-    paid_by_customer DECIMAL(10,2),
-    insurance_portion DECIMAL(10,2),
-    paid_by_insurance DECIMAL(10,2),
-    date_issued DATE NOT NULL,
-    FOREIGN KEY (visit_id) REFERENCES medical_records(visit_id)
-);
 
 -- Create equipment table
 CREATE TABLE equipment (
@@ -131,4 +119,17 @@ CREATE TABLE visits (
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
     FOREIGN KEY (provider_id) REFERENCES providers(provider_id),
     FOREIGN KEY (facility_id) REFERENCES facilities(facility_id)
+);
+
+-- Create invoices table
+CREATE TABLE invoices (
+    invoice_id INT AUTO_INCREMENT PRIMARY KEY,
+    visit_id INT NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    customer_portion DECIMAL(10,2),
+    paid_by_customer DECIMAL(10,2),
+    insurance_portion DECIMAL(10,2),
+    paid_by_insurance DECIMAL(10,2),
+    date_issued DATE NOT NULL,
+    FOREIGN KEY (visit_id) REFERENCES visits(visit_id)
 );

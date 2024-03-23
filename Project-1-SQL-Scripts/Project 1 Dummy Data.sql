@@ -35,12 +35,12 @@ INSERT INTO appointments (patient_id, provider_id, facility_id, appointment_date
 
 -- Insert data into medical_records table
 -- Note: Assumes existing patient_id and facility_id. Replace with actual IDs.
-INSERT INTO medical_records (patient_id, visit_date, facility_id, discharge_date, symptoms, diagnosis, treatment_plan) VALUES
-(1, '2024-03-01', 1, '2024-03-02', 'Cough and fever', 'Common Cold', 'Rest and hydration'),
-(2, '2024-03-02', 2, '2024-03-03', 'Headache and nausea', 'Migraine', 'Prescription medication and rest'),
-(3, '2024-03-03', 3, '2024-03-04', 'Blurry vision', 'Myopia', 'Prescription glasses'),
-(4, '2024-03-04', 4, '2024-03-05', 'Shortness of breath', 'Asthma', 'Inhaler and avoid allergens'),
-(5, '2024-03-05', 5, '2024-03-06', 'Joint pain', 'Arthritis', 'Physical therapy and medication');
+INSERT INTO medical_records (patient_id, visit_id, facility_id, discharge_date, symptoms, diagnosis, treatment_plan) VALUES
+(1, 1, 1, '2024-03-02', 'Cough and fever', 'Common Cold', 'Rest and hydration'),
+(2, 2, 2, '2024-03-03', 'Headache and nausea', 'Migraine', 'Prescription medication and rest'),
+(3, 3, 3, '2024-03-04', 'Blurry vision', 'Myopia', 'Prescription glasses'),
+(4, 4, 4, '2024-03-05', 'Shortness of breath', 'Asthma', 'Inhaler and avoid allergens'),
+(5, 5, 5, '2024-03-06', 'Joint pain', 'Arthritis', 'Physical therapy and medication');
 
 -- Insert data into prescriptions table
 -- Note: Assumes existing record_id. Replace with actual IDs.
@@ -59,14 +59,6 @@ INSERT INTO vision_tests (record_id, test_type, test_date, result) VALUES
 (4, 'Peripheral Vision Test', '2024-03-05', 'Normal'),
 (5, 'Depth Perception Test', '2024-03-06', 'Good');
 
--- Insert data into invoices table
--- Note: Assumes existing appointment_id. Replace with actual IDs.
-INSERT INTO invoices (appointment_id, total_amount, customer_portion, paid_by_customer, insurance_portion, paid_by_insurance, date_issued) VALUES
-(1, 200.00, 20.00, 20.00, 180.00, 180.00, '2024-03-02'),
-(2, 150.00, 30.00, 30.00, 120.00, 120.00, '2024-03-03'),
-(3, 100.00, 10.00, 10.00, 90.00, 90.00, '2024-03-04'),
-(4, 250.00, 50.00, 50.00, 200.00, 200.00, '2024-03-05'),
-(5, 300.00, 60.00, 60.00, 240.00, 240.00, '2024-03-06');
 
 -- Insert data into equipment table
 INSERT INTO equipment (equipment_name, purchase_date, room_number, status) VALUES
@@ -99,3 +91,10 @@ INSERT INTO visits (patient_id, provider_id, facility_id, visit_date, visit_time
 (4, 4, 4, '2024-03-28', '14:45:00'),
 (5, 5, 5, '2024-03-29', '16:30:00');
 
+-- Insert data into invoices table
+INSERT INTO invoices (visit_id, total_amount, customer_portion, paid_by_customer, insurance_portion, paid_by_insurance, date_issued) VALUES
+(1, 200.00, 20.00, 20.00, 180.00, 180.00, '2024-03-02'),
+(2, 150.00, 30.00, 30.00, 120.00, 120.00, '2024-03-03'),
+(3, 100.00, 10.00, 10.00, 90.00, 90.00, '2024-03-04'),
+(4, 250.00, 50.00, 50.00, 200.00, 200.00, '2024-03-05'),
+(5, 300.00, 60.00, 60.00, 240.00, 240.00, '2024-03-06');
