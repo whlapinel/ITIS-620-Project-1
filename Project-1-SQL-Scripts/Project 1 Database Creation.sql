@@ -46,6 +46,20 @@ CREATE TABLE appointments (
     FOREIGN KEY (provider_id) REFERENCES providers(provider_id)
 );
 
+-- Create visits table
+CREATE TABLE visits (
+    visit_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    provider_id INT NOT NULL,
+    facility_id INT NOT NULL,
+    visit_date DATE NOT NULL,
+    visit_time TIME NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
+    FOREIGN KEY (provider_id) REFERENCES providers(provider_id),
+    FOREIGN KEY (facility_id) REFERENCES facilities(facility_id)
+);
+
+
 -- Create medical_records table
 CREATE TABLE medical_records (
     record_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -58,7 +72,9 @@ CREATE TABLE medical_records (
     diagnosis VARCHAR(255),
     treatment_plan TEXT,
     foreign key (facility_id) references facilities(facility_id),
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
+    FOREIGN KEY (provider_id) REFERENCES providers(provider_id),
+    FOREIGN KEY (visit_id) REFERENCES visits(visit_id)
 );
 
 -- Create prescriptions table
@@ -88,7 +104,9 @@ CREATE TABLE equipment (
     equipment_name VARCHAR(255) NOT NULL,
     purchase_date DATE NOT NULL,
     room_number VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL
+    status VARCHAR(255) NOT NULL,
+    facility_id INT NOT NULL,
+    FOREIGN KEY (facility_id) REFERENCES facilities(facility_id)
 );
 
 -- Create inventory table
@@ -109,18 +127,6 @@ CREATE TABLE staff (
     schedule VARCHAR(255) NOT NULL
 );
 
--- Create visits table
-CREATE TABLE visits (
-    visit_id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT NOT NULL,
-    provider_id INT NOT NULL,
-    facility_id INT NOT NULL,
-    visit_date DATE NOT NULL,
-    visit_time TIME NOT NULL,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
-    FOREIGN KEY (provider_id) REFERENCES providers(provider_id),
-    FOREIGN KEY (facility_id) REFERENCES facilities(facility_id)
-);
 
 -- Create invoices table
 CREATE TABLE invoices (
